@@ -5,14 +5,18 @@ $form = new Form(array(
     'name' => 'formulaire', 
     'action' => 'traitement.php'));
 
-$form->add(new TextInput('nom'))
+$form->add(new TextInput())
+        ->name('nom')
         ->label('Votre nom');
-$form->add(new PasswordInput('password'))
+$form->add(new PasswordInput())
+        ->name('password')
         ->label('Mot de passe');
-$form->add(new TextareaInput('textarea'))
+$form->add(new TextareaInput())
+        ->name('textarea')
         ->rows(10)
         ->cols(30)
-        ->value('Mon texte');
+        ->value('Mon texte')
+        ->onclick('javascript:this.value=\'\';');
 
 echo $form->render();
 ?>

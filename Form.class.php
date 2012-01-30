@@ -35,7 +35,8 @@ class Form {
     }
     
     public function add($elementObject) {
-        if(get_parent_class($elementObject) == self::FORM_ELEMENTS_MAINCLASS && in_array('htmlDisplayable', class_implements($elementObject))) {
+        $parentClass = get_parent_class($elementObject);
+        if(($parentClass == self::FORM_ELEMENTS_MAINCLASS OR get_parent_class(new $parentClass) == self::FORM_ELEMENTS_MAINCLASS) && in_array('htmlDisplayable', class_implements($elementObject))) {
             $this->_elements[] = $elementObject;
         }
         return $elementObject;
