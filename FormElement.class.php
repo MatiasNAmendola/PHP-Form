@@ -29,7 +29,7 @@ class FormElement {
         return $this->_attributes[$attribute] = $value;
     }
     
-    public function getFormattedAttributes($except = array('label')) {
+    public function getFormattedAttributes(array $except) {
         $formattedAttributes = '';
         foreach($this->_attributes as $attribute => $value) {
             if(!in_array($attribute, $except)) {

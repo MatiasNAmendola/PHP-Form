@@ -1,5 +1,5 @@
 <?php
-class PhoneInput extends TextInput {
+class PhoneInput extends GenericInput {
 
     public function __construct() {
         $this->_type = 'tel';

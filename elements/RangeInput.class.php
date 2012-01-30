@@ -1,5 +1,5 @@
 <?php
-class RangeInput extends TextInput{
+class RangeInput extends GenericInput{
 
     public function __construct() {
         $this->_type = 'range';

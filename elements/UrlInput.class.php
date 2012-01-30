@@ -1,5 +1,5 @@
 <?php
-class UrlInput extends TextInput {
+class UrlInput extends GenericInput {
 
     public function __construct() {
         $this->_type = 'url';

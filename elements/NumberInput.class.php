@@ -1,5 +1,5 @@
 <?php
-class NumberInput extends TextInput {
+class NumberInput extends GenericInput {
 
     public function __construct() {
         $this->_type = 'number';

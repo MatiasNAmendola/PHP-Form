@@ -22,5 +22,8 @@ $form->add(New RangeInput())
         ->max(100)
         ->min(0)
         ->step(10);
+$form->add(new Checkbox())
+        ->checked('checked')
+        ->name('newsletter');
 echo $form->render();
 ?>

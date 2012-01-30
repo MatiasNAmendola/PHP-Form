@@ -1,5 +1,5 @@
 <?php
-class EmailInput extends TextInput {
+class EmailInput extends GenericInput {
 
     public function __construct() {
         $this->_type = 'email';
