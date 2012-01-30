@@ -36,7 +36,9 @@ class FormElement {
                 $formattedAttributes .= sprintf('%s="%s" ', $attribute, $value);
             }
         }
-        $formattedAttributes .= 'id="'.$this->getAttribute('name').'"';
+        if(!in_array('id', $except))
+                $formattedAttributes .= 'id="'.$this->getAttribute('name').'"';
+        
         return $formattedAttributes;
     }
 

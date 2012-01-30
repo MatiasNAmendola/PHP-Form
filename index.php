@@ -11,19 +11,15 @@ $form->add(new TextInput())
 $form->add(new PasswordInput())
         ->name('password')
         ->label('Mot de passe');
-$form->add(new TextareaInput())
-        ->name('textarea')
-        ->rows(10)
-        ->cols(30)
-        ->value('Mon texte')
-        ->onclick('javascript:this.value=\'\';');
-$form->add(New RangeInput()) 
+$form->add(new Options())
         ->name('age')
-        ->max(100)
-        ->min(0)
-        ->step(10);
-$form->add(new Checkbox())
-        ->checked('checked')
-        ->name('newsletter');
+        ->options(array(
+            '10_20' => 'De 10 à 20 ans', 
+            '20_80' => 'De 20 à 80 ans'
+            ))
+        ->selected('20_80');
+$form->add(new Select()) {
+    
+}
 echo $form->render();
 ?>
