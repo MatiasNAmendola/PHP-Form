@@ -1,10 +1,10 @@
 <?php 
 class TextInput extends FormElement implements htmlDisplayable {
     
-    protected $_textInputType = 'text';
+    protected $_type = 'text';
     
     public function render() {
-        return sprintf('<input type="%s" %s />', $this->_textInputType, $this->getFormattedAttributes());
+        return sprintf('<input type="%s" %s />', $this->_type, $this->getFormattedAttributes());
     }
 }
 ?>

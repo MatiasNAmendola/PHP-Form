@@ -1,12 +1,10 @@
 <?php 
-class PasswordInput extends TextInput implements HtmlDisplayable {
+class PasswordInput extends TextInput {
     
     public function __construct() {
-        $this->_textInputType = 'password';
+        $this->_type = 'password';
     }
     
-    public function render() {
-        return '<input type="password" '.$this->getFormattedAttributes().' />';
-    }
+  
 }
 ?>

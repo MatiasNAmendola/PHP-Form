@@ -17,6 +17,10 @@ $form->add(new TextareaInput())
         ->cols(30)
         ->value('Mon texte')
         ->onclick('javascript:this.value=\'\';');
-
+$form->add(New RangeInput()) 
+        ->name('age')
+        ->max(100)
+        ->min(0)
+        ->step(10);
 echo $form->render();
 ?>
