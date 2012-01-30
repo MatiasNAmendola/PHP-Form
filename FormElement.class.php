@@ -25,6 +25,10 @@ class FormElement {
         return isset($this->_attributes[$attributeName]) ? $this->_attributes[$attributeName] : false;
     }
     
+    protected function setAttribute($attribute, $value) {
+        return $this->_attributes[$attribute] = $value;
+    }
+    
     public function getFormattedAttributes($except = array('label')) {
         $formattedAttributes = '';
         foreach($this->_attributes as $attribute => $value) {
