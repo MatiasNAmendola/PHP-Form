@@ -13,7 +13,7 @@ class Options extends FormElement implements htmlDisplayable {
                           $optionName,
                           $optionName,
                           ($this->getAttribute('selected') == $optionName || $this->getAttribute('checked') == $optionName) ? 'checked' : '',
-                          $this->getFormattedAttributes($except = array('label', 'id', 'value', 'options', 'selected')),
+                          $this->getFormattedAttributes($except = array('label', 'id', 'value', 'options', 'selected', 'checked')),
                           $optionName,
                           $optionValue,
                           Form::FORM_BREAKLINE

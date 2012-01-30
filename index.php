@@ -18,8 +18,14 @@ $form->add(new Options())
             '20_80' => 'De 20 à 80 ans'
             ))
         ->selected('20_80');
-$form->add(new Select()) {
-    
-}
+$form->add(new Select())
+        ->name('pays')
+        ->label('Votre pays')
+        ->options(array(
+         'fr' => 'France', 
+         'en' => 'Angleterre', 
+         'de' => 'Allemagne'))
+        ->selected('en');
+      
 echo $form->render();
 ?>
