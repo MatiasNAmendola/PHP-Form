@@ -22,10 +22,17 @@ $form->add(new Select())
         ->name('pays')
         ->label('Votre pays')
         ->options(array(
-         'fr' => 'France', 
-         'en' => 'Angleterre', 
-         'de' => 'Allemagne'))
-        ->selected('en');
+            'Europe' => array(
+                'fr' => 'France', 
+                'es' => 'Espagne'
+            ), 
+            'Asie' => array(
+                'jp' => 'Japon', 
+                'ch' => 'Chine'
+            )
+            
+         ))
+        ->selected('es');
       
 echo $form->render();
 ?>

@@ -13,10 +13,23 @@ class Select extends FormElement implements htmlDisplayable {
                 );
         foreach($this->getAttribute('options') as $optionValue => $optionName) {
             $html .= "\n\t";
-            $html .= sprintf('<option value="%s" %s>%s</option>', 
-                        $optionValue, 
-                        $this->getAttribute('selected') == $optionValue ? 'selected' : '',
-                        $optionName);
+            if(is_array($optionName)) {
+                $html .= sprintf('<optgroup label="%s">', $optionValue);
+                $html .= "\n\t\t";
+                foreach($optionName as $optionValue => $optionName) {
+                    $html .= sprintf('<option value="%s" %s>%s</option>', 
+                            $optionValue, 
+                            $this->getAttribute('selected') == $optionValue ? 'selected' : '',
+                            $optionName);
+                }
+                $html .= '</optgroup>';
+            }
+            else {
+                $html .= sprintf('<option value="%s" %s>%s</option>', 
+                            $optionValue, 
+                            $this->getAttribute('selected') == $optionValue ? 'selected' : '',
+                            $optionName);
+            }
         }
         $html .= "\n</select>";
         return $html;
