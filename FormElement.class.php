@@ -9,11 +9,13 @@ class FormElement {
     
     protected $_validators;
     protected $_attributes;
+    protected $_breakline = true;
     
     public function __construct($name = null) {
         if(!is_null($name)) {
             $this->_attributes['name'] = $name;
         }
+        
     }
     
     public function __call($name, $arguments) {
@@ -27,6 +29,14 @@ class FormElement {
     
     protected function setAttribute($attribute, $value) {
         return $this->_attributes[$attribute] = $value;
+    }
+    
+    public function disableBreakline() {
+        $this->_breakline = false;
+    }
+    
+    public function mustBreakline() {
+        return $this->_breakline;
     }
     
     public function getFormattedAttributes(array $except) {

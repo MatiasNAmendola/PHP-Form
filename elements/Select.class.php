@@ -15,14 +15,14 @@ class Select extends FormElement implements htmlDisplayable {
             $html .= "\n\t";
             if(is_array($optionName)) {
                 $html .= sprintf('<optgroup label="%s">', $optionValue);
-                $html .= "\n\t\t";
                 foreach($optionName as $optionValue => $optionName) {
+                    $html .= "\n\t\t";
                     $html .= sprintf('<option value="%s" %s>%s</option>', 
                             $optionValue, 
                             $this->getAttribute('selected') == $optionValue ? 'selected' : '',
                             $optionName);
                 }
-                $html .= '</optgroup>';
+                $html .= "\n\t</optgroup>";
             }
             else {
                 $html .= sprintf('<option value="%s" %s>%s</option>', 
@@ -31,7 +31,7 @@ class Select extends FormElement implements htmlDisplayable {
                             $optionName);
             }
         }
-        $html .= "\n</select>";
+        $html .= "\n</select>".Form::FORM_BREAKLINE;
         return $html;
     }
 

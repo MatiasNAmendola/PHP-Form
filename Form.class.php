@@ -46,12 +46,8 @@ class Form {
         $htmlElements = '';
         foreach($this->_elements as $element) {
             if(method_exists($element, self::FORM_ELEMENTS_RENDERHTMLMETHOD)) {
-                /*$name = $element->getAttribute('name') ? $element->getAttribute('name') : '';
-                $label = $element->getAttribute('label') ? $element->getAttribute('label') : ucfirst($name);
-
-                $htmlElements .= sprintf('<label for="%s">%s :&nbsp;</label>', $name, $label);*/
-                $htmlElements .= $element->{self::FORM_ELEMENTS_RENDERHTMLMETHOD}();
-                //$htmlElements .= self::FORM_BREAKLINE;
+                $htmlElement = $element->{self::FORM_ELEMENTS_RENDERHTMLMETHOD}();
+                $htmlElements .= $element->mustBreakline() ? $htmlElement : substr($htmlElement, 0, strlen($htmlElement)-strlen(Form::FORM_BREAKLINE));
             }
         }
         $replacements = array(
