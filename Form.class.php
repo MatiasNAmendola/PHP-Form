@@ -87,6 +87,9 @@ class Form {
                 if(get_class($element) == 'Select' || get_class($element) == 'Options') {
                     $element->selected($data[$element->getName()]);
                 }
+                if(get_class($element) == 'Checkbox') {
+                    $element->checked(true);
+                }
                 else {
                     $element->value($data[$element->getName()]);
                 }

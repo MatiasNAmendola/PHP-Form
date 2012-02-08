@@ -1,6 +1,6 @@
 <?php 
 require_once '_autoload.php';
-
+var_dump($_POST);
 $form = new Form(array(
     'name' => 'formulaire', 
     'action' => 'index.php', 
@@ -9,13 +9,13 @@ $form = new Form(array(
 $form->add(new TextInput())
         ->name('nom')
         ->label('Votre nom')
-        ->minlength(2)
-        ->maxlength(5)
-        ->regex('#^[0-9]{2,5}$#');
+        ->minlength(3);
 
 $form->add(new PasswordInput())
         ->name('password')
-        ->label('Mot de passe');
+        ->label('Mot de passe')
+        ->minlength(5);
+
 $form->add(new Options())
         ->name('age')
         ->label('Votre tranche d\'âge')
@@ -43,7 +43,6 @@ $form->add(new Select())
         ->selected('es');
 $form->add(new Checkbox())
         ->label('Recevoir notre newsletter')
-        ->checked(true)
         ->value('1')
         ->name('newsletter');
 
@@ -54,7 +53,8 @@ $form->add(new TextareaInput())
         ->label('Remarques (optionnel)')
         ->name('remarques')
         ->rows(8)
-        ->cols(20);
+        ->cols(20)
+        ->required(false);
 
 $form->add(new Button())
         ->value('Bouton')
@@ -92,8 +92,8 @@ $form->hydrate($_POST);
             echo '</ul>';
             echo '</div>';
         }
-        else {
-            // Traitement
+        elseif($form->isValid()) {
+            echo 'Merci '.$form->get('nom').' !';
         }
         ?>
     </body>
