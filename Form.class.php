@@ -11,6 +11,7 @@ class Form {
     protected $_action;
     protected $_method;  
     protected $_elements;
+    
     private   $_layoutFile;
             
     const FORM_ELEMENTS_MAINCLASS           = 'FormElement';
@@ -23,6 +24,7 @@ class Form {
         $this->_action  = isset($parameters['action'])  ?   $parameters['action']    : null;
         $this->_method  = isset($parameters['method'])  ?   $parameters['method']    : 'GET';    
         $this->_elements = array();
+        $this->_invalidElements = array();
         
         if(isset($parameters['layoutFile'])) {
             if(file_exists($parameters['layoutFile']) && is_readable($parameters['layoutFile'])) {
@@ -42,7 +44,7 @@ class Form {
         return $elementObject;
     }
     
-    public function render() {
+    public function render() {        
         $htmlElements = '';
         foreach($this->_elements as $element) {
             if(method_exists($element, self::FORM_ELEMENTS_RENDERHTMLMETHOD)) {
@@ -59,18 +61,39 @@ class Form {
         return str_replace(array_keys($replacements), array_values($replacements), file_get_contents($this->_layoutFile));
     }
     
-    public function isValid() {
-        $valid = true;
-        foreach($this->_elements as $element) {
-            if(!$element->validate()) {
-                $valid = false;
-                break 2;
-            }
-        }
-        
-        return $valid;
+    public function get($key) {
+        return isset($_POST[$key]) ? $_POST[$key] : false;
     }
     
+    public function isValid($returnErrors = false) {    
+        $invalidElements = array();
+        foreach($this->_elements as $element) {
+            $isValid = $element->isValid();
+            if($isValid !== true) {
+                $invalidElements[$element->getAttribute('label')] = $isValid;
+            }
+        }
+        $this->_invalidElements = $invalidElements;
+        return $returnErrors ? $invalidElements : empty($invalidElements);
+    }
+    
+    public function getErrors() {
+        return $this->_invalidElements;
+    }
+    
+    public function hydrate($data) {
+        foreach($this->_elements as $element) {
+            if(isset($data[$element->getName()])) {
+                if(get_class($element) == 'Select' || get_class($element) == 'Options') {
+                    $element->selected($data[$element->getName()]);
+                }
+                else {
+                    $element->value($data[$element->getName()]);
+                }
+            }
+
+        }
+    }
 }
 
 ?>
