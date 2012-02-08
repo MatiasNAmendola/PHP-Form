@@ -1,6 +1,6 @@
 <?php 
 require_once '_autoload.php';
-var_dump($_POST);
+
 $form = new Form(array(
     'name' => 'formulaire', 
     'action' => 'index.php', 
