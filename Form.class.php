@@ -26,16 +26,15 @@ class Form {
         $this->_elements = array();
         $this->_invalidElements = array();
         
-        if(isset($parameters['layoutFile'])) {
-            if(file_exists($parameters['layoutFile']) && is_readable($parameters['layoutFile'])) {
-                $this->_layoutFile = $parameters['layoutFile'];
-            }
-        }
-        else {
-            $this->_layoutFile = dirname(__FILE__).'/'.self::FORM_LAYOUT_DEFAULT;
-        }
+        $this->_layoutFile = dirname(__FILE__).'/'.self::FORM_LAYOUT_DEFAULT;
+        
     }
     
+    public function setLayoutFile($fileName) {
+        if(file_exists($fileName) && is_readable($fileName)) {
+                $this->_layoutFile = $fileName;
+        }
+    }
     public function add($elementObject) {
         $parentClass = get_parent_class($elementObject);
         if(($parentClass == self::FORM_ELEMENTS_MAINCLASS OR get_parent_class(new $parentClass) == self::FORM_ELEMENTS_MAINCLASS) && in_array('htmlDisplayable', class_implements($elementObject))) {
